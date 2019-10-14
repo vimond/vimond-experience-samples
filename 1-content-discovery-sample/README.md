@@ -37,7 +37,7 @@ $ npm start
 ```
 [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in your favorite browser.  
 
-> Note that we are using local.sample-app.vim:3000 instead of just localhost:3000. This is due to the next sample using Vimond Identity service that in some cases do not allow using localhost. Swithcing between the two hosts might confise the broswer CORS restrictions when calling the content delivery services. So please stick to local.sample-app.vim
+> Note that we are using local.sample-app.vim:3000 instead of just localhost:3000. This is due to the next sample using Vimond Identity service that in some cases do not allow using localhost. Swithcing between the two hosts might confuse the broswer CORS restrictions when calling the content delivery services. So please stick to local.sample-app.vim
 
 ### Specific content discovery components
 
