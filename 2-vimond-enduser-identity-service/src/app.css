@@ -842,3 +842,15 @@ button {
 margin-bottom: 3rem;
 
 }
+
+.tmdb-logo {
+  right:4rem;
+  position:fixed;
+  top:2rem;
+}
+.tmdb-logo img{
+  z-index:30;
+  width:2rem;
+  height: 2rem;
+  z-index: 30;
+}

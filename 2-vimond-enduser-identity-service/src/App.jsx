@@ -61,7 +61,9 @@ export default class App extends Component {
           <a href="https://vimond.github.io/replay/"  target="_blank" rel="noopener noreferrer"  className="lab">
             <h1>Replay</h1>
           </a>
-         
+          <div className="tmdb-logo" >
+              <img alt='The Movie Database' src='/tmdb-stacked.png'/> 
+          </div>
          
         </header>
 
