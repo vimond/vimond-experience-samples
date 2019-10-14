@@ -3,7 +3,7 @@ import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
 import Strip from '../../components/ui/Strip';
 import Carousel from '../../components/ui/Slider';
 
-import Modal from '../../components/modal/modal';
+import Modal from '../../components/utils/modal/modal';
 import InlineCategory from '../../components/ui/InlineCategory';
 import InlinePlay from '../../components/ui/InlinePlay'
 
@@ -61,6 +61,7 @@ class Curation extends Component {
     
     const { items=[],item={},showModal } = this.state;
     return (
+      <>
       <div className="page">
             
            {items.map(item =>{
@@ -77,13 +78,14 @@ class Curation extends Component {
             }
           }
            )}
-            
-            { showModal && <Modal className="modal"show={showModal} close={this.closeModalHandler} > 
-            {item.contentType==='asset'?<InlinePlay item={item.content} /> : <InlineCategory categoryItem={item}/>}
-            </Modal> }            
+     
+                    
      </div>
- 
-      
+
+    { showModal && <Modal className="modalV"show={showModal} close={this.closeModalHandler} > 
+      {item.contentType==='asset'?<InlinePlay item={item.content} /> : <InlineCategory categoryItem={item}/>}
+    </Modal> }    
+    </>  
     );
 
   }

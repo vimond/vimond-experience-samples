@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Icons from '../icons/Icons'
+import Icons from '../utils/icons/Icons'
 
 
 
@@ -9,7 +9,7 @@ import Icons from '../icons/Icons'
 
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   color: white;
   height: 100%;
   width: 100%;
@@ -21,11 +21,9 @@ const Container = styled.div`
   overflow-y: hidden;
   background: ${props => props.url ? props.url : '#000'};
   background-size: cover;
+  
 `;
 
-
-// background: linear-gradient(to right, rgba(0,0,0,1) 10%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
-//background: rgba(0,0,0,.2);
 const Gradient = styled.div`
 
 position: absolute;
@@ -102,12 +100,15 @@ export default class InlinePlay extends Component {
               <h4>{asset && asset.genre}</h4>
               <div>          
                 <IconGradient onClick={this.onPlay}>
-                  <Icons className="icons" name="play" /> <h4 className="icons icons-text">PLAY</h4> 
+                  
+                  <Icons name='play' label='PLAY' className=''/>
+
                 </IconGradient>                         
               </div> 
           </Content>
           <Gradient/>
         </Container>
+   
     );
   }
 

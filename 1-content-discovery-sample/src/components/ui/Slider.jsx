@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import cx from 'classnames/bind';
-import Icons  from '../icons/Icons';
+import Icons  from '../utils/icons/Icons';
 
 
 
@@ -219,7 +219,7 @@ export default class Slider extends Component {
              {item && <Content>
                   
                 
-                <p><Icons className="play-icon" name="arrow-left" onClick={this.goToPrevSlide}/><Icons className="play-icon"  name="arrow-right" onClick={this.goToNextSlide}/></p>   
+             {/* <p><Icons className="play-icon" name="arrow-left" onClick={this.goToPrevSlide}/><Icons className="play-icon"  name="arrow-right" onClick={this.goToNextSlide}/></p>  */ }
                  <h2> {(item && item.content.title) || 'Untitled'}     </h2> 
                  <h4>{item && 'id : '+item.id}</h4> 
                  <h4>{item && item.content.genre}</h4> 

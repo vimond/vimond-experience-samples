@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import Icons from '../icons/Icons'
+import Icons from '../utils/icons/Icons'
 import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
 
 
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 const contentDiscoveryAPI = new ContentDiscoveryAPI();
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   color: white;
   height: 100%;
   width: 100%;
@@ -50,7 +50,7 @@ height: 3rem;
 display: block;
 top: 0;
 left: 0px;
-width: 160px;
+width: 190px;
 background: rgba(0,0,0,.6);
 transition: all .3s ease-in;
 transition-delay: .25s;
@@ -165,8 +165,7 @@ return(
                 <div>
                   {seasonAssets && seasonAssets.map(item => (
                     <div className='seasons-gradient' key={item.id} onClick={this.onPlay} data-id={item.id} >
-                      <Icons className="icons" name="play" /> 
-                      <h4 className="icons icons-text">{item.episode} {item.title} </h4>               
+                      <Icons name='play' label={item.episode+' '+item.title} className=''/>            
                     </div>
                      
                   ))}

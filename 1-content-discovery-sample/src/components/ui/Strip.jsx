@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames/bind';
 import styled from 'styled-components'
-import Cover from '../Cover';
+import Cover from './Cover';
 import InlinePlay from './InlinePlay'
 
 const Section = styled.section`

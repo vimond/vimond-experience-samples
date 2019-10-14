@@ -11,21 +11,22 @@ export default class Icons extends Component {
         
         name: PropTypes.string,
         onClick : PropTypes.func,
-        className : PropTypes.string
+        className : PropTypes.string,
+        label:PropTypes.string,
        
     };
 
  
-  renderProvider(name,className){
+  renderProvider(name,className,label){
    
-    return <span className={className}><SVG src={`/icons/${name}.svg`}  /></span>
+    return <span className={className}><SVG src={`/icons/${name}.svg`}/><h1>{label}</h1></span>
     
   }
 
 
   render() {
-    const { name,className} = this.props;
-    return name && this.renderProvider(name,className) 
+    const { name,className,label} = this.props;
+    return name && this.renderProvider(name,className,label) 
     
   }
 

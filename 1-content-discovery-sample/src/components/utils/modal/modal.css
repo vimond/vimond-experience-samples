@@ -1,13 +1,15 @@
-.modal {
+.modalV {
     position: fixed;
     top:0;
     left:0;
     right:0;
     bottom:0;
+    z-index: 1;
+    overflow: auto;
     
 }
 
-.modal-overlay {
+.modalV-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +19,7 @@
 
 }
 
-.modal-wrapper {
+.modalV-wrapper {
     background: black;
     border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
@@ -27,7 +29,7 @@
     height: 50%;
 }
 
-.modal-header {
+.modalV-header {
     background: #263238;
     height: 40px;
     line-height: 40px;
@@ -35,46 +37,46 @@
     text-align: right;
 }
 
-.modal-header h3 {
+.modalV-header h3 {
     color: white;
     float: left;
     margin: 0;
     padding: 0;
 }
 
-.modal-body {
-    width:70%;
-    margin: auto;
-    height: 75%;
-    margin-top: 5rem;
+.modalV-body {
+    max-width: 100rem;
+    margin: 4rem auto;
+    max-height: 90%;
+    min-height: 70%;
+    position: relative;
+    top:5rem;
+    
 }
 
-.modal-footer {
+.modalV-footer {
     background: #263238;
     height: 35px;
     padding: 15px;
 }
 
-.close {
-    /*position: absolute;*/
-    padding: .75rem;
-    top: 0;
-    right: 0;
-    border-radius: 0;
+.closeV {
+    position: absolute;
+    right: 1rem;
+    z-index: 2;
     background-color: transparent;
-    -webkit-filter: drop-shadow(0 0 3px #1f2532);
-    filter: drop-shadow(0 0 3px #1f2532);
 }
 
-.close-modal-btn {
+.close-modalV-btn {
     color: white;
     cursor: pointer;
     float: right;
     font-size: 30px;
     margin: 0;
+    
 }
 
-.close-modal-btn:hover {
+.close-modalV-btn:hover {
     color: black;
 }
 
@@ -106,7 +108,7 @@
     width: 100%;
 }
 
-.open-modal-btn {
+.open-modalV-btn {
     margin: 15px;
     padding: 10px;
     font-weight: bold;

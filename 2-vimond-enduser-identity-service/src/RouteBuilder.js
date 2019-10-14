@@ -12,7 +12,7 @@ export const getRoutes = () => {
     .filter(key => {
       const name = key.match(/.*\/(.*).jsx$/)[1];
 
-      return key === `./${name}.jsx` || key === `./${name}/${name}.jsx` || key === `./content-discovery/${name}.jsx`  ;
+      return key === `./${name}.jsx` || key === `./${name}/${name}.jsx` || key === `./content-discovery/${name}.jsx`  || key === `./end-user-identity/${name}.jsx` ;
     });
   const pageComponents = pageNames.map(pages);
   const routes = pageNames.map((fileName, index) => {

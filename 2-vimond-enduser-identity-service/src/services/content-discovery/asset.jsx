@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
 import Strip from '../../components/ui/Strip';
-import Modal from '../../components/modal/modal';
+import Modal from '../../components/utils/modal/modal';
 import InlinePlay from '../../components/ui/InlinePlay'
 
 
@@ -60,7 +60,7 @@ class Asset extends Component {
             {showSingle /* && <div className='single'><InlinePlay title="Single asset sample" key={asset.id} item={asset} id={asset.id}/> </div> */}
             <Strip listId={ASSET_CATEGORYROOT} title={'Mutiple Assets request-sample from category : ' + ASSET_CATEGORYROOT} items={items} onClick={this.onCoverClick}/>
             
-            { showModal && <Modal className="modal"show={showModal} close={this.closeModalHandler} > 
+            { showModal && <Modal className="modalV"show={showModal} close={this.closeModalHandler} > 
               <InlinePlay title="Single asset sample" key={asset.id} item={asset} id={asset.id}/> 
             </Modal> }            
      </div>

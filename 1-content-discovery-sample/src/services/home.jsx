@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from './content-discovery/asset'
+import Page from './content-discovery/curation'
 
 
 

@@ -1,23 +1,29 @@
 const CD_SERVICE_URL = process.env.REACT_APP_CD_API_HOST;
+const fetchOptionsGET = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  method: 'get', 
+};            
+
 
 export default class ContentDiscoveryAPI {
  
  
     request(url,fetchOptions){
       return new Promise((resolve, reject) => { fetch(`${url}`,fetchOptions)
-      .then(response => 
-        {
-          if (response.ok){
-            const resp = response.json()
-            resolve (resp);
-          }else{
-            reject (response)
-          }
-        })
-      .catch(err => console.error('An error occurred while fetching ', err));
-    
-    })
-    
+        .then(response => 
+          {
+            if (response.ok){
+              const resp = response.json()
+              resolve (resp);
+            }else{
+              reject (response)
+            }
+          })
+        .catch(err => console.error('An error occurred while fetching ', err));
+      })
     }
 
 /* ASSETS */
@@ -29,16 +35,7 @@ export default class ContentDiscoveryAPI {
 
      getSingleAsset(assetId) {
         const url = `${CD_SERVICE_URL}/assets/${assetId}`;
-
-        const fetchOptions = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: 'get', 
-           
-          };               
-          return this.request(url,fetchOptions);
+        return this.request(url,fetchOptionsGET);
       }
     
       /**
@@ -50,17 +47,8 @@ export default class ContentDiscoveryAPI {
        */
       getAssetsFromCategoryId(categoryId) {
 
-        const url = `${CD_SERVICE_URL}/assets/?query=category.id:${categoryId} AND assetType:" main"&sort=id`;
-
-        const fetchOptions = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: 'get', 
-           
-          };               
-          return this.request(url,fetchOptions);
+        const url = `${CD_SERVICE_URL}/assets/?query=category.id:${categoryId} AND assetType:" main"&sort=id`;         
+        return this.request(url,fetchOptionsGET);
       }
 
 
@@ -75,16 +63,7 @@ export default class ContentDiscoveryAPI {
       getSingleCategory(categoryId,param) {
 
         const url = `${CD_SERVICE_URL}/categories/${categoryId}${param}`;
-
-        const fetchOptions = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: 'get', 
-           
-          };               
-          return this.request(url,fetchOptions);
+        return this.request(url,fetchOptionsGET);
       }
 
         /**
@@ -96,16 +75,8 @@ export default class ContentDiscoveryAPI {
       getSubCategories(categoryId,param) {
 
         const url = `${CD_SERVICE_URL}/categories/?query=parentId:${categoryId}${param}`;
-
-        const fetchOptions = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: 'get', 
-           
-          };               
-          return this.request(url,fetchOptions);
+        return this.request(url,fetchOptionsGET);
+         
       }
 
 
@@ -114,16 +85,7 @@ export default class ContentDiscoveryAPI {
       getContentCurationListByID(ccId) {
 
         const url = `${CD_SERVICE_URL}/lists/${ccId}`;
-
-        const fetchOptions = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: 'get', 
-           
-          };               
-          return this.request(url,fetchOptions);
+        return this.request(url,fetchOptionsGET);
       }
 
 

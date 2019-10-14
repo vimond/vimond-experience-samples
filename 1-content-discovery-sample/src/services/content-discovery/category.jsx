@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
 import Strip from '../../components/ui/Strip';
-import Modal from '../../components/modal/modal';
+import Modal from '../../components/utils/modal/modal';
 import InlineCategory from '../../components/ui/InlineCategory';
 
 
@@ -60,7 +60,7 @@ class Category extends Component {
             {showSingle /* && <div className='single'> </div> */}
             <Strip listId={CATEGORYROOT} title={'Mutiple Category request-sample from  parent category : ' + CATEGORYROOT} items={items} onClick={this.onCoverClick}/>
             
-            { showModal && <Modal className="modal"show={showModal} close={this.closeModalHandler} > 
+            { showModal && <Modal className="modalV"show={showModal} close={this.closeModalHandler} > 
             <InlineCategory categoryItem={categoryItem}/>
             </Modal> }            
      </div>
