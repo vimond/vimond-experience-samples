@@ -103,10 +103,6 @@ Install and run the app locally.
 $ npm install
 $ npm start
 ```
-Open [http://localhost:3000](http://localhost:3000) in your favorite browser.
-
-Or if you have uncommented the #HOST=local.sample-app.vim
-and #VEID_AUTH_CALLBACK_URL = 'http://local.sample-app.vim:3000/'
 
 Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in your favorite browser.  
 
@@ -114,7 +110,7 @@ Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in you
 Some changes since sample 1.
 
 1. src/client-api/end-user-identity.js -  This is the auth0 connection. We have made some modifications from the [Auth0 react sample](https://manage.vimond.auth0.com/docs/quickstart/spa/react#install-the-auth0-react-wrapper).
-2. src/index.js - This files is modified to wrap the Auth0 library. Here you can also redirect the callback after login. 
+2. [src/index.js](src/index.js) - This files is modified to wrap the Auth0 library. Here you can also redirect the callback after login. 
 3. src/components/end-user-identity/ProfileBar.jsx - ProfileBar in the right upper corner. 
 4. src/components/end-user-identity/Profile.jsx - Profile component showing the user with id profile and decoded accesstoken. This also shows you have to update a users metadata. 
 5. src/components/end-user-identity/Profile.jsx - Profile component 
