@@ -18,14 +18,21 @@ Open [http://localhost:3000](http://localhost:3000) in your favorite browser.
 ### Specific content discovery components
 
  All files in the src/services folder will be picked up and given a route context defined in the src/RouteBuilder.js file
- 
+ > src/services/content-discovery/
+
  If you look at the files src/services/content-discovery/*
  ```
   static CONFIG_PAGE = false; //ignore
   static NO_MENU = false; // false = will appear in the menu
   static TITLE = "Asset Sample"; // menu title.
 ```
+> src/client-api/*
 
+This folder will contain the services request API's.
+
+ > src/components/* 
+
+ Reusable components 
 
 
 
