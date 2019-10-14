@@ -61,7 +61,7 @@ Create a .env.developmet file in the root directory an add these values :
 
 ```
 #local host alternative
-#HOST=local.sample-app.vim # Uncomment this to test update of user.
+HOST=local.sample-app.vim 
 
 
 # Content delivery API
@@ -84,20 +84,18 @@ VEID_AUTH_CLIENT_ID = '<your client ID >'
 VEID_AUTH_AUDIENCE = 'https://<your tenant here>.singleapp.vimond.com/'
 VEID_AUTH_MANA_AUDIENCE = 'https://<your tenant here>.vimond.auth0.com/api/v2/'
 VEID_AUTH_SCOPE = 'openid profile email phone user_metadata update:current_user_metadata read:current_user'
-VEID_AUTH_CALLBACK_URL = 'http://localhost:3000/callback'
-#VEID_AUTH_CALLBACK_URL = 'http://local.sample-app.vim:3000/callback'
+VEID_AUTH_CALLBACK_URL = 'http://local.sample-app.vim:3000/callback'
 
 VEID_AUTH_REDIRECT_PATH = '/profile'
 
 ```
-> Note there are two VEID_AUTH_CALLBACK_URL options!
+
 
 > When updating user_metadata (editProfile.jsx) you need to retreive a management token. The consent needed to achieve this is not allowed through localhost. 
 
 > A workaround is to use 
 HOST=local.sample-app.vim instead. 
 
-This comes with a downside, for some reason the browser CORS behaviour might not allow you to then call the content delivery services.. 
 
 ### install
 Install and run the app locally.
@@ -110,7 +108,7 @@ Open [http://localhost:3000](http://localhost:3000) in your favorite browser.
 Or if you have uncommented the #HOST=local.sample-app.vim
 and #VEID_AUTH_CALLBACK_URL = 'http://local.sample-app.vim:3000/'
 
-Open Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in your favorite browser.  
+Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in your favorite browser.  
 
 ### New Files
 Some changes since sample 1.
