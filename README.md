@@ -8,6 +8,7 @@ This Version
 1. [Content Discovery service](https://vimond-experience-api.readme.io/docs/content-discovery)
 
 Next version 
+
 2. TODO Vimond End-User Identity (authentication and authorization)
 3. TODO [Sub-profile Service](https://vimond-experience-api.readme.io/docs/sub-profile-service)
 4. TODO [Video playback services](https://vimond-experience-api.readme.io/docs/video-playback) with [Replay open source player](https://vimond.github.io/replay/)
