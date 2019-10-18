@@ -50,7 +50,9 @@ $ npm start
 ### folder structure
 
 /client-api -> this is where all requests to our services APIs is defined
+
 /components -> different components for the single page.
+
 /services -> if any of the services needs a url context, this is where you find them. These are picked up by the RouteBuilder.js in the root folder.
 
 Easy. 
