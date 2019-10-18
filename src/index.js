@@ -6,11 +6,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Auth0Provider } from "./client-api/end-user-identity";
 
 ReactDOM.render(
-    
-        <Router><App/></Router>,
-    
+    <Auth0Provider>
+        <Router><App/></Router>
+    </Auth0Provider>,
     document.getElementById("root")
   );
 
