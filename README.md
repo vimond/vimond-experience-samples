@@ -5,7 +5,7 @@ All Service API's, Terminolgy and concepts, guides and tutorials are documented 
 [Vimond Experience Developer Hub](https://vimond-experience-api.readme.io/)
 
 This Version
-1. [Content Discovery service](https://vimond-experience-api.readme.io/docs/content-discovery)
+1. [Content Discovery service](https://vimond-experience-api.readme.io/docs/content-discovery) On github [v1.0-content-discovery-service](https://github.com/vimond/vimond-experience-samples/tree/v1.0-content-discovery-service)
 
 Next version 
 
