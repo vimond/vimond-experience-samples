@@ -8,11 +8,12 @@ This Version
 1. [Content Discovery service](https://vimond-experience-api.readme.io/docs/content-discovery) On github [v1.0-content-discovery-service](https://github.com/vimond/vimond-experience-samples/tree/v1.0-content-discovery-service)
 2. Vimond End-User Identity (authentication and authorization) On github []()
 
-Next version 
+Next versions 
 
-3. [Sub-profile Service](https://vimond-experience-api.readme.io/docs/sub-profile-service) [Playlist Service](https://vimond-experience-api.readme.io/docs/playlist-service)
-4. [Video playback services](https://vimond-experience-api.readme.io/docs/video-playback) with [Replay open source player](https://vimond.github.io/replay/)
-5. [User viewing history](https://vimond-experience-api.readme.io/docs/resume-playback) for history lists and cross platform resume api's
+3. [Sub-profile Service](https://vimond-experience-api.readme.io/docs/sub-profile-service) 
+4. [Playlist Service](https://vimond-experience-api.readme.io/docs/playlist-service)
+5. [Video playback services](https://vimond-experience-api.readme.io/docs/video-playback) with [Replay open source player](https://vimond.github.io/replay/)
+6. [User viewing history](https://vimond-experience-api.readme.io/docs/resume-playback) 
 
 
 
@@ -59,9 +60,9 @@ The other methodes not covered in this sample are
 4. Using the [Auth0 authentication API](https://auth0.com/docs/api/info). It does more or less the same as the auth0.js library, but if you for some reason are not able to use any of the [Libraries](https://auth0.com/docs/libraries) when developing clients you can use the API directly. Typical usage is for smart TV, set-top boxes etc. In these cases you might want to consider to use Device Authorization Flow. 
 
 5. [Device Authorization Flow](https://auth0.com/docs/flows/concepts/device-auth). The device asks the user to go to a link on their computer or smartphone and authorize the device. This avoids a poor user experience for devices that do not have an easy way to enter text. 
-Even though it is not intended for a web application, we make a single page sample using device flow in a later sample. 
+Even though it is not intended for a web application, we will make a single page sample using device flow in a later version of the sample app. 
 
-This sample are using Hooks which are a new addition in React 16.8. They let you use state and other React features without writing a class.
+>This sample are using Efect Hooks which are a new addition in React 16.8. They let you use state and other React features without writing a class.
 See [Using the Effect Hook](https://reactjs.org/docs/hooks-effect.html)
 
 
@@ -115,7 +116,7 @@ VEID_AUTH_MANA_AUDIENCE = 'https://<your tenant here>.vimond.auth0.com/api/v2/'
 VEID_AUTH_SCOPE = 'openid profile email phone user_metadata update:current_user_metadata read:current_user'
 VEID_AUTH_CALLBACK_URL = 'http://local.sample-app.vim:3000/callback'
 
-VEID_AUTH_REDIRECT_PATH = '/profile'
+VEID_AUTH_REDIRECT_PATH = '/' 
 
 ```
 
