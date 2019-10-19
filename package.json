@@ -13,6 +13,9 @@
   "author": "Thomas Aalén",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.2.4",
+    "auth0-js": "^9.11.3",
+    "auth0-lock": "^11.18.0",
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",
     "prop-types": "^15.7.2",
