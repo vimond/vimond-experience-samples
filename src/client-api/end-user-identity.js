@@ -285,16 +285,7 @@ const loginLock =() =>{
     }
 
     function cleanupOnLogout(){
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('userManagementToken');
-      localStorage.removeItem('accessTokenDecoded');
-      localStorage.removeItem('user');
-      localStorage.removeItem('userProfile');
-      localStorage.removeItem('expire');
-      localStorage.removeItem('expire_at');
-      localStorage.removeItem('subProfileToken');
-      localStorage.removeItem('subProfile');
-
+      localStorage.clear();
       setIsAuthenticated(false);
 
     }
