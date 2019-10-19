@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { useState,useEffect } from "react";
 import { Link, Route, Switch } from 'react-router-dom';
 import cx from "classnames/bind";
 import PageNotFound from './components/404';
@@ -10,6 +10,10 @@ import ProfileBar from "./components/end-user-identity/ProfileBar";
 import Modal from './components/utils/modal/modal';
 import AuthProfile from './components/end-user-identity/Profile';
 import CustomLogin from './components/end-user-identity/customLogin'
+import SubProfiles from './components/sub-profile/SubProfiles'
+import { useEndUserServices } from './client-api/end-user-services'
+import { useAuth0 } from "./client-api/end-user-identity";
+
 
 
 
@@ -17,37 +21,49 @@ const routes = getRoutes();
 const menus = getMenus(routes);
 
 
-export default class App extends Component {
+ const App = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-    
+  const { subProfiles,loadSubProfiles} = useEndUserServices();
+  const { isAuthenticated} = useAuth0();
+  const [pageMenuOpen, setPageMenuOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [profileModalOpen, SetProfileModalOpen] = useState(false);
+  const [customLoginModalOpen, setCustomLoginModalOpen] = useState(false);
+  const [subProfileOpen, setSubProfileOpen] = useState(false);
 
-  }
+  useEffect(() => {
+    // run this to open the subprofile after login. 
+    if(isAuthenticated && !subProfiles && !localStorage.getItem('subProfile')){
+      loadSubProfiles();
+      setSubProfileOpen(true);
+      console.log('subProfiles',subProfiles)
+    }
 
+   // eslint-disable-next-line
+    },[isAuthenticated]);
+
+ const onMouseWheel = e => e.preventDefault();
+
+ const onTogglePageMenu = () => setPageMenuOpen(!pageMenuOpen);
+ const onToggleProfileMenu = () => setProfileMenuOpen(!profileMenuOpen);
+ const onToggleProfileModal = () => SetProfileModalOpen(!profileModalOpen);
+ const onToggleCustomLoginModal = () => setCustomLoginModalOpen(!customLoginModalOpen);
+ const onToggleSubProfileModal = () => setSubProfileOpen (!subProfileOpen );
+
+
+  const currentRoute = routes.find(route => route.path === window.location.pathname);
   
 
-  onMouseWheel = e => e.preventDefault();
-
-  onTogglePageMenu = () => this.setState({ pageMenuOpen: !this.state.pageMenuOpen });
-  onToggleProfileMenu = () => this.setState({ profileMenuOpen: !this.state.profileMenuOpen });
-  onToggleProfileModal = () => this.setState({ profileModalOpen: !this.state.profileModalOpen });
-  onToggleCustomLoginModal = () => this.setState({ customLoginModalOpen: !this.state.customLoginModalOpen });
-
- 
-
-  render() {
-    const currentRoute = routes.find(route => route.path === window.location.pathname);
-    const {profileModalOpen,customLoginModalOpen} = this.state;
-
+  
+   
 
     return (
       
-      <div className={cx('app', { 'page-menu-open': this.state.pageMenuOpen, 'profile-menu-open': this.state.profileMenuOpen, config: currentRoute && currentRoute.CONFIG_PAGE})}>
+      <div className={cx('app', { 'page-menu-open':pageMenuOpen, 'profile-menu-open': profileMenuOpen, config: currentRoute && currentRoute.CONFIG_PAGE})}>
 
         <header className="page-header">
-          <button onClick={this.onTogglePageMenu}><Icon name='menu'/></button>
+          <button onClick={onTogglePageMenu}><Icon name='menu'/></button>
+         
           <a href="/" className="home">
             <Icon name='vimond' className=''/>
           </a>
@@ -64,7 +80,7 @@ export default class App extends Component {
           <div className="tmdb-logo" >
               <img alt='The Movie Database' src='/tmdb-stacked.png'/> 
           </div>
-         
+          
         </header>
 
        
@@ -79,13 +95,13 @@ export default class App extends Component {
           <Route path="/profile" component={Profile} />
         </Switch>
 
-        <div className="page-menu-glasspane" onClick={this.onTogglePageMenu} onWheel={this.onMouseWheel}/>
+        <div className="page-menu-glasspane" onClick={onTogglePageMenu} onWheel={onMouseWheel}/>
 
         <nav className="page-menu">
           <ul>
             {menus.map(route => (
               <li key={route.key}>
-                <Link className={cx({ selected: route === currentRoute })} to={route.path} onClick={this.onTogglePageMenu}> {route.title} </Link>
+                <Link className={cx({ selected: route === currentRoute })} to={route.path} onClick={onTogglePageMenu}> {route.title} </Link>
               </li>
             ))}
           </ul>     
@@ -93,19 +109,27 @@ export default class App extends Component {
         </nav>
 
         
-        <ProfileBar onClick={this.onToggleProfileMenu} showProfile={this.onToggleProfileModal} showCustomLogin={this.onToggleCustomLoginModal} />  
+        <ProfileBar onClick={onToggleProfileMenu} showProfile={onToggleProfileModal} showCustomLogin={onToggleCustomLoginModal} showSubProfile={onToggleSubProfileModal}/>  
+        
 
         {profileModalOpen && 
-          <Modal className="modalV"show={profileModalOpen} key='auth' close={this.onToggleProfileModal} > 
+          <Modal className="modalV"show={profileModalOpen} key='auth' close={onToggleProfileModal} > 
             <AuthProfile/>
           </Modal> }
 
           {customLoginModalOpen && 
-          <Modal className="modalV"show={customLoginModalOpen} key='customLogin' close={this.onToggleCustomLoginModal} > 
+          <Modal className="modalV"show={customLoginModalOpen} key='customLogin' close={onToggleCustomLoginModal} > 
             <CustomLogin/>
           </Modal> }
+
+          {subProfileOpen && 
+          <Modal className="modalV"show={subProfileOpen} key='customLogin' close={onToggleSubProfileModal} > 
+              <SubProfiles onClose={onToggleSubProfileModal}/>
+          </Modal> }
+
         
       </div>
     );
   }
-}
+
+  export default App;

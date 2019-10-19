@@ -61,8 +61,7 @@ import Tabs from '../utils/tabs/tabs'
           <Icon name="vimond" className="logo customlogin-icon-vimond"/>
           <Tabs>
             <div label="Login"> 
-              <InputGroup>
-                 
+              <InputGroup>     
                   <input key='username' id='username' placeholder='username' onChange={onChange}/>  
                   <input key='password' id='password' placeholder='password' type='password'  onChange={onChange}/>  
                   <h1>{respondMessage }</h1>   

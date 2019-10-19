@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
+import ContentDiscoveryAPI from '../../client-api/content-discovery-api';
 import Strip from '../../components/ui/Strip';
 import Modal from '../../components/utils/modal/modal';
 import InlinePlay from '../../components/ui/InlinePlay'
