@@ -88,30 +88,10 @@ export const Auth0Provider = ({
           emailInputPlaceholder: "something@youremail.com",
           title: "Vimond Demo Portal",
           forgotPasswordAction: "Oh man, I forgot my password again!",
-        },
-       /* additionalSignUpFields: [{
-          name: "oidc-nickname",
-          placeholder: "enter nick name",
-          /* The following properties are optional
-          validator: function(address) {
-            return {
-               valid: address.length >= 10,
-               hint: "Must have 10 or more chars" // optional
-            };
-          }
-        },
-        {
-          name: "oidc-given_name",
-          placeholder: "Enter your first name"
-        },
-        {
-          name: "oidc-family_name",
-          placeholder: "Enter your family name"
         }
-      ]*/
     
       });
-
+      
 
       setAuth0SDK(auth0FromHook);
       setAuth0Lock(auth0LockFromHook);
@@ -126,7 +106,7 @@ export const Auth0Provider = ({
           addToLocalStorage(authResult); // adding auth result to localstorage.
           setConstantsFromAuthResult(authResult);
           retreiveManagementToken(auth0FromHook);
-                
+          
         });      
         
       }  // set values if already stored
@@ -305,10 +285,19 @@ const loginLock =() =>{
     }
 
     function cleanupOnLogout(){
-      localStorage.clear();
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userManagementToken');
+      localStorage.removeItem('accessTokenDecoded');
+      localStorage.removeItem('user');
+      localStorage.removeItem('userProfile');
+      localStorage.removeItem('expire');
+      localStorage.removeItem('expire_at');
+      localStorage.removeItem('subProfileToken');
+      localStorage.removeItem('subProfile');
+
       setIsAuthenticated(false);
+
     }
-    
     function addToLocalStorage  (authResult) {
       localStorage.setItem('accessToken',authResult.accessToken);
       localStorage.setItem('accessTokenDecoded',JSON.stringify(jwtDecode(authResult.accessToken)));

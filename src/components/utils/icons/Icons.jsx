@@ -19,7 +19,7 @@ export default class Icons extends Component {
  
   renderProvider(name,className,label){
    
-    return <span className={className}><SVG src={`/icons/${name}.svg`}/><h1>{label}</h1></span>
+  return <span className={className}><SVG src={`/icons/${name}.svg`}/> {label && <h1>{label}</h1>}</span>
     
   }
 

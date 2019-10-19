@@ -173,9 +173,12 @@ h1, h2 {
   top:0rem;
   position:fixed;
   z-index: 12;
+  display: flex;
   
 }
-
+.profile-subprofile-header {
+  margin: auto;
+}
 .profile-login-logo {
   position: absolute;
   white-space: nowrap;
@@ -189,6 +192,8 @@ h1, h2 {
   padding: 2rem;
   cursor: pointer;
   pointer-events: all;
+  margin: 0rem;
+
 }
 
 .profile-menu-icon button svg {
@@ -853,4 +858,116 @@ margin-bottom: 3rem;
   width:2rem;
   height: 2rem;
   z-index: 30;
+}
+
+
+.subProfileCovers {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+ 
+  color: white;
+  margin-left: 17rem;
+  margin-right: 17rem;
+  
+}
+
+.subProfileCover {
+  display: block;
+  background-color: #1f2532;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 50ms ease-in-out;
+  height: 6rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  width: 6rem;
+ 
+ 
+}
+.subProfileInput, .loginInput {
+  width: 20rem;
+  color: grbey;
+  text-align: start;
+
+}
+
+.subProfileInputGroup, .loginInputGroup {
+margin-top: 3rem;
+
+}
+
+.subProfileCover  img {
+ 
+  height: 4rem;
+  width: 4rem;
+  margin: 1rem auto;
+}
+
+.subProfileAdd {
+  margin: auto;
+  width:100%;
+  display: inline-grid;
+}
+
+.subProfileCover  svg {
+  
+  height: 4.4rem;
+  width: 4.4rem;
+  margin: 1rem auto;
+}
+
+.subProfileCover  h1 {
+  font-size: 1rem;
+line-height: 2;
+text-transform: uppercase;
+margin: auto;
+padding-left: .1rem;
+border-left: none;
+color: white;
+}
+
+.subProfileCover:hover {
+  opacity: 1;
+  box-shadow: 0 0 3rem #1f2532;
+  transform: scale(1.06);
+  z-index: 2;
+  height: 6rem;
+}
+
+.subprofile-edit {
+  margin-top: 2rem;
+}
+.subprofile-edit input {
+  background: #fff;
+  border: 0;
+  min-width: 10rem;
+  flex: 1 1;
+  color: #201c29;
+  padding: .75rem 1.5rem .75rem 1.5rem;
+  -webkit-appearance: unset;
+  width: 10rem;
+  margin: auto;
+  font-size: .70rem;
+  font-weight: 500;
+}
+
+.subprofile-edit select {
+  background: #fff;
+  border: 0;
+  min-width: 13rem;
+  flex: 1 1;
+  color: #201c29;
+  padding: .75rem 1.5rem .75rem 1.5rem;
+  -webkit-appearance: unset;
+  width: 10rem;
+  margin: auto;
+  font-size: .70rem;
+  font-weight: 500;
 }

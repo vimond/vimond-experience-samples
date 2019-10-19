@@ -5,12 +5,18 @@ import './index.css';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
 import { Auth0Provider } from "./client-api/end-user-identity";
+import { EndUserServicesProvider } from "./client-api/end-user-services";
+
+
+
+
 
 ReactDOM.render(
     <Auth0Provider>
-        <Router><App/></Router>
+       <EndUserServicesProvider>
+          <Router> <App accessToken={'accessToken'}/></Router>
+        </EndUserServicesProvider>
     </Auth0Provider>,
     document.getElementById("root")
   );
