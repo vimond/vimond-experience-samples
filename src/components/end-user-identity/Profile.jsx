@@ -1,5 +1,6 @@
 import React from "react";
 import {useAuth0} from '../../client-api/end-user-identity';
+import {useEndUserServices} from '../../client-api/end-user-services';
 import Tabs from '../utils/tabs/tabs'
 import EditProfile from './editProfile'
 
@@ -12,6 +13,7 @@ import PrettyJSON from '../utils/PrettyJSON'
 
 const  AuthProfile  = () => {
     const { loading, user,accessToken, accessTokenDecoded, patchUserMetadata,userManagementToken,refreshTokensSDK,userProfile } = useAuth0();
+    const { playlist,subProfile } = useEndUserServices();
     //const decodedAccesToken = JSON.parse(localStorage.getItem('accessTokenPayload'));
    
     
@@ -56,8 +58,19 @@ const  AuthProfile  = () => {
               </div> 
             </div>
            
-            <div label="Sarcosuchus">
-              Nothing to see here, this tab is <em>extinct</em>!
+            <div label={`Sub profile ${subProfile.subProfileName}`}>
+           
+            <Tabs>
+              <div label="Playlist">
+               
+                  <PrettyJSON jsonData={playlist} title={playlist.name} expanded={true}/>
+                
+              </div>
+              <div label="History">
+              
+              </div>
+              </Tabs>
+             
             </div>
           </Tabs> 
           </div>

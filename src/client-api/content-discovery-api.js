@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 const SUB_PROFILE_SERVICE_HOST = process.env.REACT_APP_SUB_PROFILE_SERVICE_HOST;
 const CD_SERVICE_HOST = process.env.REACT_APP_CD_API_HOST;
 const DEVICE_SERVICE_HOST = 'TODO';
-const PLAYLIST_SERVICE_HOST = 'TODO'
+const PLAYLIST_SERVICE_HOST = process.env.REACT_APP_PLAYLIST_SERVICE_HOST
 
 
 let fetchOptions = (method, accesToken=undefined , body=undefined , subProfileToken=undefined  )=> {
@@ -101,6 +101,16 @@ export default class ContentDiscoveryAPI {
       }
 
 
+      getAssetsFromQuery(query) {
+
+        const url = `${CD_SERVICE_HOST}/assets/?${query}`;         
+        return request(url,fetchOptions('get'));
+         
+      }
+
+
+
+
       /** CONTEN CURATOR LISTS */
 
       getContentCurationListByID(ccId) {
@@ -187,32 +197,34 @@ export  class PlaylistAPI {
  
   
   getAllPlaylists(accessToken, subProfileToken=undefined){
-    return this.request(PLAYLIST_SERVICE_HOST,fetchOptions('get',accessToken,undefined,subProfileToken));
+    const url = `${PLAYLIST_SERVICE_HOST}playlists/`;
+    return request(url,fetchOptions('get',accessToken,undefined,subProfileToken));
   }
 
   getPlaylist(accessToken, playlistId, subProfileToken=undefined){
-    const url = `${DEVICE_SERVICE_HOST}/${playlistId}`;
+    const url = `${PLAYLIST_SERVICE_HOST}playlists/${playlistId}`;
     return request(url,fetchOptions('get',accessToken,undefined,subProfileToken));
   }
   
 
-  createPlaylist(accessToken, body, subProfileToken=undefined){     
-      return this.request(PLAYLIST_SERVICE_HOST,fetchOptions('post',accessToken,body,subProfileToken));
+  createPlaylist(accessToken, body, subProfileToken=undefined){    
+      const url = `${PLAYLIST_SERVICE_HOST}playlists/`; 
+      return request(url,fetchOptions('post',accessToken,body,subProfileToken));
   }
 
   updatePlaylist( accessToken, playListId, body, subProfileToken=undefined){
-    const url = `${DEVICE_SERVICE_HOST}/${playListId}`;
+    const url = `${PLAYLIST_SERVICE_HOST}playlists/${playListId}`;
     return request(url,fetchOptions('put',accessToken,body,subProfileToken));
   }
 
   addAssetToPlaylist(accessToken, playListId,assetId,subProfileToken=undefined){
-    const url = `${DEVICE_SERVICE_HOST}/${playListId}/assets/${assetId}`;
+    const url = `${PLAYLIST_SERVICE_HOST}playlists/${playListId}/assets/${assetId}`;
     return request(url,fetchOptions('post',accessToken,undefined,subProfileToken));
   }
 
 
   removeAssetFromPlaylist(accessToken, playListId,assetId,subProfileToken=undefined){
-    const url = `${DEVICE_SERVICE_HOST}/${playListId}/assets/${assetId}`;
+    const url = `${PLAYLIST_SERVICE_HOST}playlists/${playListId}/assets/${assetId}`;
     return request(url,fetchOptions('delete',accessToken,undefined,subProfileToken));
   }
 
