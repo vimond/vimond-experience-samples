@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+
 import styled from 'styled-components';
 import Icons from '../utils/icons/Icons'
 
-
-
+import { useEndUserServices } from "../../client-api/end-user-services";
+import { useAuth0 } from "../../client-api/end-user-identity";
 
 
 
@@ -54,6 +54,8 @@ transition: all .3s ease-in;
 transition-delay: .25s;
 opacity: 1;
 margin-bottom: 1rem;
+
+
 `;
 
 const Content = styled.div`
@@ -71,25 +73,22 @@ transition-delay: .25s;
 
 
 
-export default class InlinePlay extends Component {
+const InlinePlay = ({asset}) =>{
 
-  static propTypes = { 
-    item: PropTypes.object
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {asset:this.props.item};
-  }
+  const { playlist, addAssetToPlaylist, removeAssetFromPlaylist } = useEndUserServices();
+  const { isAuthenticated } = useAuth0();
 
  
+  function onPlay(){}
+  function onAddAssetToPlaylist(){  addAssetToPlaylist(playlist.id,asset.id) }
+  function onRemoveAssetFromPlaylist(){  removeAssetFromPlaylist(playlist.id,asset.id) }
+ 
   
-
+  function checkIfAssetInlist(Id) {
+    return Id === asset.id?true:false;
+  }
   
-  
-  render() {
-    const { asset } = this.state;
-    
+  const isInlist = playlist && playlist.assetIds.length > 0 ?playlist.assetIds.find(checkIfAssetInlist):false;  
     return (
      
         <Container url={`url('${asset.images.defaultUrl}?location=carousel')`}>    
@@ -99,11 +98,14 @@ export default class InlinePlay extends Component {
               <p>{asset && asset.description}</p>
               <h4>{asset && asset.genre}</h4>
               <div>          
-                <IconGradient onClick={this.onPlay}>
-                  
-                  <Icons name='play' label='PLAY' className=''/>
-
+                <IconGradient onClick={onPlay}>  
+                  <Icons name='play' label='PLAY' className='icons'/>
                 </IconGradient>                         
+               {isAuthenticated && (
+                   <IconGradient onClick={isInlist?onRemoveAssetFromPlaylist:onAddAssetToPlaylist}>  
+                    { isInlist?<Icons name='delete' label='Playlist' className='icons'/>:<Icons name='add' label='Playlist' className='icons'/>}
+                  </IconGradient>                         
+               )} 
               </div> 
           </Content>
           <Gradient/>
@@ -112,4 +114,4 @@ export default class InlinePlay extends Component {
     );
   }
 
-}
+export default InlinePlay

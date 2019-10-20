@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ContentDiscoveryAPI from '../../client-api/content-discovery-api'
 import Strip from '../../components/ui/Strip';
 import Carousel from '../../components/ui/Slider';
+import Playlist from '../../components/playlist/playlist'
 
 import Modal from '../../components/utils/modal/modal';
 import InlineCategory from '../../components/ui/InlineCategory';
@@ -38,11 +39,12 @@ class Curation extends Component {
   }
 
   onCoverClick = (e, item) => {
-  
-    if(item.contentType==='asset'){
-      this.setState({ item: item,showModal: true }); 
-    }else{
+    
+    if(item.contentType==='category'){
       this.showCategory(item);
+    }else{
+     // cheking if asset is from a contentpanel item or an asset item
+      this.setState({ item: item.content?item.content:item,showModal: true,contenType:'asset' }); 
     }
 
   };
@@ -50,7 +52,7 @@ class Curation extends Component {
   showCategory(item) {
     /** In this case we need to load the depth since the children is not a part of the  */
      contentDiscoveryAPI.getSingleCategory(item.id,'?depth=1')
-     .then(response => { console.log('Single category request with children',response.data[0]); this.setState({ item: response.data[0],showModal: true }); } )
+     .then(response => { console.log('Single category request with children',response.data[0]); this.setState({ item: response.data[0],showModal: true,contenType:'category' }); } )
 
   }
 
@@ -59,7 +61,7 @@ class Curation extends Component {
 
   render() {
     
-    const { items=[],item={},showModal } = this.state;
+    const { items=[],item={},showModal,contenType } = this.state;
     return (
       <>
       <div className="page">
@@ -68,7 +70,7 @@ class Curation extends Component {
             if(item.contentType==='contentpanel' && item.container_type==='Resume') {
               return "" /** TODO  This will be implemented in a later sample */
             } else if(item.contentType==='contentpanel' && item.container_type==='Favorites') {
-              return "" /** TODO This will be implemented in a later sample */
+              return <Playlist key={item.id} onCoverClick={this.onCoverClick.bind(this)} />
             } else if(item.contentType==='carousel'){
               return <Carousel key={item.id}  title={item.title} items={item.elements} onClick={this.onCoverClick}/>
             }else if(item.contentType==='contentpanel'){
@@ -83,7 +85,7 @@ class Curation extends Component {
      </div>
 
     { showModal && <Modal className="modalV"show={showModal} close={this.closeModalHandler} > 
-      {item.contentType==='asset'?<InlinePlay item={item.content} /> : <InlineCategory categoryItem={item}/>}
+      {contenType==='asset'?<InlinePlay asset={item} /> : <InlineCategory categoryItem={item}/>}
     </Modal> }    
     </>  
     );
