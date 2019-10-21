@@ -425,6 +425,7 @@ button {
   font-weight: 500;
   line-height: 1.25rem;
   text-transform: uppercase;
+  max-height: 3rem;;
 
 }
 

@@ -9,12 +9,11 @@ This Version
 2. Vimond End-User Identity (authentication and authorization) On github []()
 3. [Sub-profile Service](https://vimond-experience-api.readme.io/docs/sub-profile-service) 
 4. [Playlist Service](https://vimond-experience-api.readme.io/docs/playlist-service)
+5. [Video playback services](https://vimond-experience-api.readme.io/docs/video-playback) with [Replay open source player](https://vimond.github.io/replay/)
 
 Next versions 
 
 
-
-5. [Video playback services](https://vimond-experience-api.readme.io/docs/video-playback) with [Replay open source player](https://vimond.github.io/replay/)
 6. [User viewing history](https://vimond-experience-api.readme.io/docs/resume-playback) 
 
 
@@ -33,19 +32,19 @@ Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in you
 Some changes since branch [v1.2-sub-profile-service](https://github.com/vimond/vimond-experience-samples/tree/v1.2-sub-profile-service).
 
 ```
- modified:   .env
+  modified:   .env
+        modified:   README.md
+        modified:   package-lock.json
+        modified:   package.json
         modified:   src/app.css
-        modified:   src/client-api/content-discovery-api.js
-        modified:   src/client-api/end-user-services.js
-        modified:   src/components/end-user-identity/Profile.jsx
         modified:   src/components/ui/InlinePlay.jsx
-        modified:   src/services/content-discovery/curation.jsx
+        modified:   src/components/utils/icons/Icons.jsx
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-        public/icons/delete.svg
-        src/components/playlist/
+        src/client-api/playback-api/
+        src/components/video-playback/
 
 ```
 

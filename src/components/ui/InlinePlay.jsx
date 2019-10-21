@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import styled from 'styled-components';
 import Icons from '../utils/icons/Icons'
+import PlayerWithVimondServices from '../video-playback/PlayerWithVimondServices'; 
 
 import { useEndUserServices } from "../../client-api/end-user-services";
 import { useAuth0 } from "../../client-api/end-user-identity";
 
 
-
+const Inline = styled.div`
+  background-color: black;
+  height: 100%;
+  width: 100%;
+`;
 const Container = styled.div`
   position: absolute;
   color: white;
@@ -71,18 +76,50 @@ transition: all .3s ease-in;
 transition-delay: .25s;
 `;
 
+const PlayerContainer = styled.div`
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  background: black;
+  left: 0;
+  top: 0rem;
+  bottom: 0rem;
+  z-index: 100;
+`;
 
+const PLAY_SERVICE_HOST = process.env.REACT_APP_PLAY_SERVICE_HOST
 
 const InlinePlay = ({asset}) =>{
 
-  const { playlist, addAssetToPlaylist, removeAssetFromPlaylist } = useEndUserServices();
-  const { isAuthenticated } = useAuth0();
+  console.log('Loading Asset ',asset);
 
+  const { playlist, addAssetToPlaylist, removeAssetFromPlaylist, subProfileToken } = useEndUserServices();
+  const { isAuthenticated,accessToken } = useAuth0();
+
+  const [play,setPlay ] = useState(false);
+  const [startPosition, setStartPosition] = useState(0);
+  const [version, setVersion] = useState();
+  const [logSession, setLogSession] = useState();
+  
+
+  let config = { configuration: {
+    playbackService: {
+      playApiHost: PLAY_SERVICE_HOST,
+      streamContentType: 'hls',
+    }
+  }}
  
-  function onPlay(){}
+  const onPlay = (e) =>{ 
+    
+    let version = e.currentTarget.id;//==='main'?undefined:e.currentTarget.id;
+    version === 'Trailer'?setLogSession(false):setLogSession(true);
+    setStartPosition(0)
+    setVersion(version)
+    setPlay(!play); 
+  }
   function onAddAssetToPlaylist(){  addAssetToPlaylist(playlist.id,asset.id) }
   function onRemoveAssetFromPlaylist(){  removeAssetFromPlaylist(playlist.id,asset.id) }
- 
+  const onClose = () => {setPlay(!play)};
   
   function checkIfAssetInlist(Id) {
     return Id === asset.id?true:false;
@@ -90,26 +127,49 @@ const InlinePlay = ({asset}) =>{
   
   const isInlist = playlist && playlist.assetIds.length > 0 ?playlist.assetIds.find(checkIfAssetInlist):false;  
     return (
-     
+       <Inline>
         <Container url={`url('${asset.images.defaultUrl}?location=carousel')`}>    
           <Content>
               <h2>{(asset && asset.title) || 'Untitled'} </h2> 
               <h4>{asset && 'id : '+asset.id}</h4> 
               <p>{asset && asset.description}</p>
               <h4>{asset && asset.genre}</h4>
-              <div>          
-                <IconGradient onClick={onPlay}>  
-                  <Icons name='play' label='PLAY' className='icons'/>
-                </IconGradient>                         
-               {isAuthenticated && (
+              <div>   
+              <h2>Versions </h2>  
+              { asset.version.available.map(version =>   
+                <IconGradient key={version} onClick={onPlay} id={version}  >  
+                <div >
+                  <Icons name='play' label={'PLAY '+version}  className='icons'/>
+                  </div>
+                </IconGradient>  
+              )
+              }                       
+               {isAuthenticated && (<>
+                  <h2>Playlist</h2>       
                    <IconGradient onClick={isInlist?onRemoveAssetFromPlaylist:onAddAssetToPlaylist}>  
-                    { isInlist?<Icons name='delete' label='Playlist' className='icons'/>:<Icons name='add' label='Playlist' className='icons'/>}
-                  </IconGradient>                         
+                    { isInlist?<Icons name='delete' label='Remove' className='icons'/>:<Icons name='add' label='Add' className='icons'/>}
+                  </IconGradient>     
+                  </>                    
                )} 
               </div> 
           </Content>
           <Gradient/>
         </Container>
+         {
+          play &&
+          <PlayerContainer>
+            <PlayerWithVimondServices
+              asset={asset}
+              authentication={{accessToken, subProfileToken }}
+              onExit={onClose}
+              configuration={config.configuration}
+              startPosition={startPosition}
+              version={version}
+              logsession={logSession}
+            />
+          </PlayerContainer>
+        }
+        </Inline> 
    
     );
   }
