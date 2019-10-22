@@ -32,7 +32,7 @@ Open [http://local.sample-app.vim:3000](http://local.sample-app.vim:3000) in you
 Some changes since branch [v1.2-sub-profile-service](https://github.com/vimond/vimond-experience-samples/tree/v1.2-sub-profile-service).
 
 ```
-  modified:   .env
+        modified:   .env
         modified:   README.md
         modified:   package-lock.json
         modified:   package.json
