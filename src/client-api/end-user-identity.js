@@ -196,6 +196,20 @@ function signUpSDK  (option)  {
       auth0SDKClient.logout();
     }; 
 
+    const checkIfTokenNeedsRenewal = () =>{
+      if(isAuthenticated){
+        const expiresAt = JSON.parse(localStorage.getItem('expire_at'));
+        let time = new Date(expiresAt);
+        if(expiresAt<Date.now()){
+          console.log('token expired : ',time.toLocaleString(), 'Refresing token');
+          refreshTokensSDK();
+        }
+        if(expiresAt>Date.now()){
+          console.log('token is valid, exipres : ',time.toLocaleString());
+        }
+      }
+    }
+
    // refreshes your token when close to expire, after purchase or user updates
    const refreshTokensSDK = () => {
     auth0SDKClient.checkSession({}, (err, result) => {
@@ -319,7 +333,8 @@ const loginLock =() =>{
         resetPasswordSDK,
         respondMessage,
         patchUserMetadata,
-        refreshTokensSDK,}}>
+        refreshTokensSDK,
+        checkIfTokenNeedsRenewal}}>
       {children}
     </Auth0Context.Provider>
   );

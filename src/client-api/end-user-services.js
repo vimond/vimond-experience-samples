@@ -118,8 +118,7 @@ function initPlaylist(pSubProfileToken){
   playlistAPI.getAllPlaylists(accessToken,pSubProfileToken).then(
     result => { 
         if(result.data.length===0){
-          playlistAPI.createPlaylist(accessToken,JSON.stringify({ name: "My Playlist", assetIds: []}),pSubProfileToken);
-          localStorage.setItem('playlist',)
+          playlistAPI.createPlaylist(accessToken,JSON.stringify({ name: "My Playlist", assetIds: []}),pSubProfileToken)
           .then(createdlist => { 
               setPlaylist(createdlist.data[0]);
               localStorage.setItem('playlist',JSON.stringify(createdlist.data[0]))

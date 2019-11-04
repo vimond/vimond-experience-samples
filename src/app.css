@@ -60,7 +60,6 @@ h1, h2 {
   background: transparent;
   border: none;
   outline: none;
-  padding: 2rem;
   cursor: pointer;
   pointer-events: all;
   max-width: 2rem;
@@ -189,7 +188,7 @@ h1, h2 {
   background: transparent;
   border: none;
   outline: none;
-  padding: 2rem;
+  padding: .5rem;
   cursor: pointer;
   pointer-events: all;
   margin: 0rem;

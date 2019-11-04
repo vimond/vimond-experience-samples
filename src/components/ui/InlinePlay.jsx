@@ -94,14 +94,14 @@ const InlinePlay = ({asset}) =>{
   console.log('Loading Asset ',asset);
 
   const { playlist, addAssetToPlaylist, removeAssetFromPlaylist, subProfileToken } = useEndUserServices();
-  const { isAuthenticated,accessToken } = useAuth0();
+  const { isAuthenticated,accessToken,checkIfTokenNeedsRenewal } = useAuth0();
 
   const [play,setPlay ] = useState(false);
   const [startPosition, setStartPosition] = useState(0);
   const [version, setVersion] = useState();
   const [logSession, setLogSession] = useState();
   
-
+  checkIfTokenNeedsRenewal();
   let config = { configuration: {
     playbackService: {
       playApiHost: PLAY_SERVICE_HOST,

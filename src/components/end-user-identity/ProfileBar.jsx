@@ -8,9 +8,9 @@ import Icon from '../utils/icons/Icons'
 
 
 const ProfileBar = ({onClick,showProfile,showCustomLogin,showSubProfile}) => {
-  const { isAuthenticated, universalLoginSDK, user, logoutSDK,loading,isEmailVerified,loginLock ,refreshTokensSDK} = useAuth0();
+  const { isAuthenticated, universalLoginSDK, user, logoutSDK,loading,isEmailVerified,loginLock,checkIfTokenNeedsRenewal} = useAuth0();
   const { subProfile,loadSubProfiles } = useEndUserServices();
-  const refreshToken = () => refreshTokensSDK();
+  const refreshToken = () => checkIfTokenNeedsRenewal();
 
   if (loading) {
     return (
@@ -28,7 +28,7 @@ const ProfileBar = ({onClick,showProfile,showCustomLogin,showSubProfile}) => {
       
         <button onClick={() => {onClick()}}>
        
-{!isAuthenticated ?<Icon name='user' label='Login' className='profile-login-logo'/> :<img src={user.picture} alt="Profile"  width="50" onClick={refreshToken}/>}
+        {!isAuthenticated ?<Icon name='user' label='Login' className='profile-login-logo'/> :<img src={user.picture} alt="Profile"  width="50" onClick={refreshToken}/>}
           
         </button>
         {subProfile && <div className="profile-subprofile-header" onClick={() => {onClick(); refreshToken()}}><h2>{subProfile.subProfileName}</h2></div>}
