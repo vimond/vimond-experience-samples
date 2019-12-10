@@ -40,11 +40,7 @@ Some changes since branch [v1.2-sub-profile-service](https://github.com/vimond/v
         modified:   src/components/ui/InlinePlay.jsx
         modified:   src/components/utils/icons/Icons.jsx
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
 
-        src/client-api/playback-api/
-        src/components/video-playback/
 
 ```
 
