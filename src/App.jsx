@@ -15,15 +15,12 @@ import { useEndUserServices } from './client-api/end-user-services'
 import { useAuth0 } from "./client-api/end-user-identity";
 
 
-
-
 const routes = getRoutes();
 const menus = getMenus(routes);
 
+const App = () => {
 
- const App = () => {
-
-  const { subProfiles,loadSubProfiles} = useEndUserServices();
+  const { subProfiles, loadSubProfiles } = useEndUserServices();
   const { isAuthenticated} = useAuth0();
   const [pageMenuOpen, setPageMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -32,7 +29,7 @@ const menus = getMenus(routes);
   const [subProfileOpen, setSubProfileOpen] = useState(false);
 
   useEffect(() => {
-    // run this to open the subprofile after login. 
+    // run this to open the subprofile after login.
     if(isAuthenticated && !subProfiles && !localStorage.getItem('subProfile')){
       loadSubProfiles();
       setSubProfileOpen(true);
@@ -49,87 +46,74 @@ const menus = getMenus(routes);
  const onToggleProfileModal = () => SetProfileModalOpen(!profileModalOpen);
  const onToggleCustomLoginModal = () => setCustomLoginModalOpen(!customLoginModalOpen);
  const onToggleSubProfileModal = () => setSubProfileOpen (!subProfileOpen );
+ const currentRoute = routes.find(route => route.path === window.location.pathname);
+
+  return (
+    <div className={cx('app', { 'page-menu-open':pageMenuOpen, 'profile-menu-open': profileMenuOpen, config: currentRoute && currentRoute.CONFIG_PAGE})}>
+
+      <header className="page-header">
+        <button onClick={onTogglePageMenu}><Icon name='menu'/></button>
+        <a href="/" className="home">
+          <Icon name='vimond' className=''/>
+        </a>
+        <a href="https://vimond-experience-api.readme.io/"  target="_blank" rel="noopener noreferrer"  className="lab">
+          <h1>API docs</h1>
+        </a>
+        <a href="https://vcc-user-manual.readme.io/" target="_blank" rel="noopener noreferrer"  className="lab">
+          <h1>VCC docs</h1>
+        </a>
+        <a href="https://vimond.github.io/replay/"  target="_blank" rel="noopener noreferrer"  className="lab">
+          <h1>Replay</h1>
+        </a>
+        <div className="tmdb-logo" >
+            <img alt='The Movie Database' src='/tmdb-stacked.png'/>
+        </div>
+      </header>
+
+      <Switch>
+        {routes.map(route => <Route
+          key={route.key}
+          path={route.path}
+          render={(props) => ( React.createElement(route.component, {...props })) }
+          exact/>)}
+        <Route component={PageNotFound}/>
+        <Route path="/profile" component={Profile} />
+      </Switch>
+
+      <div className="page-menu-glasspane" onClick={onTogglePageMenu} onWheel={onMouseWheel}/>
+
+      <nav className="page-menu">
+        <ul>
+          {menus.map(route => (
+            <li key={route.key}>
+              <Link className={cx({ selected: route === currentRoute })} to={route.path} onClick={onTogglePageMenu}> {route.title} </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
 
-  const currentRoute = routes.find(route => route.path === window.location.pathname);
-  
+      <ProfileBar onClick={onToggleProfileMenu} showProfile={onToggleProfileModal} showCustomLogin={onToggleCustomLoginModal} showSubProfile={onToggleSubProfileModal}/>
+      { profileModalOpen &&
+        <Modal className="modalV" show={profileModalOpen} key='auth' close={onToggleProfileModal} >
+          <AuthProfile/>
+        </Modal>
+      }
 
-  
-   
+      { customLoginModalOpen &&
+        <Modal className="modalV" show={customLoginModalOpen} key='customLogin' close={onToggleCustomLoginModal} >
+          <CustomLogin/>
+        </Modal>
+      }
 
-    return (
-      
-      <div className={cx('app', { 'page-menu-open':pageMenuOpen, 'profile-menu-open': profileMenuOpen, config: currentRoute && currentRoute.CONFIG_PAGE})}>
+      { subProfileOpen &&
+        <Modal className="modalV" show={subProfileOpen} key='customLogin' close={onToggleSubProfileModal} >
+            <SubProfiles onClose={onToggleSubProfileModal}/>
+        </Modal>
+      }
 
-        <header className="page-header">
-          <button onClick={onTogglePageMenu}><Icon name='menu'/></button>
-         
-          <a href="/" className="home">
-            <Icon name='vimond' className=''/>
-          </a>
+    </div>
+  );
+};
 
-          <a href="https://vimond-experience-api.readme.io/"  target="_blank" rel="noopener noreferrer"  className="lab">
-            <h1>API docs</h1>
-          </a>
-          <a href="https://vcc-user-manual.readme.io/" target="_blank" rel="noopener noreferrer"  className="lab">
-            <h1>VCC docs</h1>
-          </a>
-          <a href="https://vimond.github.io/replay/"  target="_blank" rel="noopener noreferrer"  className="lab">
-            <h1>Replay</h1>
-          </a>
-          <div className="tmdb-logo" >
-              <img alt='The Movie Database' src='/tmdb-stacked.png'/> 
-          </div>
-          
-        </header>
-
-       
-        
-        <Switch>
-          {routes.map(route => <Route
-            key={route.key}
-            path={route.path}
-            render={(props) => ( React.createElement(route.component, {...props })) }
-            exact/>)}
-          <Route component={PageNotFound}/>
-          <Route path="/profile" component={Profile} />
-        </Switch>
-
-        <div className="page-menu-glasspane" onClick={onTogglePageMenu} onWheel={onMouseWheel}/>
-
-        <nav className="page-menu">
-          <ul>
-            {menus.map(route => (
-              <li key={route.key}>
-                <Link className={cx({ selected: route === currentRoute })} to={route.path} onClick={onTogglePageMenu}> {route.title} </Link>
-              </li>
-            ))}
-          </ul>     
-
-        </nav>
-
-        
-        <ProfileBar onClick={onToggleProfileMenu} showProfile={onToggleProfileModal} showCustomLogin={onToggleCustomLoginModal} showSubProfile={onToggleSubProfileModal}/>  
-        
-
-        {profileModalOpen && 
-          <Modal className="modalV"show={profileModalOpen} key='auth' close={onToggleProfileModal} > 
-            <AuthProfile/>
-          </Modal> }
-
-          {customLoginModalOpen && 
-          <Modal className="modalV"show={customLoginModalOpen} key='customLogin' close={onToggleCustomLoginModal} > 
-            <CustomLogin/>
-          </Modal> }
-
-          {subProfileOpen && 
-          <Modal className="modalV"show={subProfileOpen} key='customLogin' close={onToggleSubProfileModal} > 
-              <SubProfiles onClose={onToggleSubProfileModal}/>
-          </Modal> }
-
-        
-      </div>
-    );
-  }
-
-  export default App;
+export default App;

@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 const HOME = 'home';
 
 export const getRoutes = () => {
@@ -11,7 +8,6 @@ export const getRoutes = () => {
     .keys()
     .filter(key => {
       const name = key.match(/.*\/(.*).jsx$/)[1];
-
       return key === `./${name}.jsx` || key === `./${name}/${name}.jsx` || key === `./content-discovery/${name}.jsx`  || key === `./end-user-identity/${name}.jsx` || key === `./sub-profile/${name}.jsx` ;
     });
   const pageComponents = pageNames.map(pages);
@@ -28,7 +24,7 @@ export const getRoutes = () => {
       NO_MENU: component.type && component.type.NO_MENU,
       HEADER: component.type && component.type.HEADER,
       CONFIG_PAGE:  component.type && component.type.CONFIG_PAGE,
-    }
+    };
   });
   const index = routes.findIndex(route => route.key === HOME);
 
@@ -42,5 +38,4 @@ export const getRoutes = () => {
 };
 
 export const getMenus = routes => routes.filter(route => !route.NO_MENU);
-
 export const getTabs = routes => routes.filter(route => route.HEADER);

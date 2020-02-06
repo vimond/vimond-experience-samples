@@ -97,7 +97,7 @@ const getPlayerSessionService = (configuration = {}, getPlayerState, kickPlaybac
         viewingSession
       });
 
-     // console.log('Player session client: Posting event data', completeEventData, authentication);
+      // console.log('Player session client: Posting event data', completeEventData, authentication);
       // TODO: Make a fetch here. Pass token and subProfileToken in configuration object, see further up.
       //const fakeRequest = Promise.resolve({});
       // Invoke processPostResult() asynchronously after posting.
@@ -114,18 +114,18 @@ const getPlayerSessionService = (configuration = {}, getPlayerState, kickPlaybac
         fetchOptions.headers['X-Vimond-Subprofile'] = authentication.subProfileToken;
       } 
 
-     return fetch(eventPostUrl,fetchOptions)
+      return fetch(eventPostUrl,fetchOptions)
         .then(response => {
           if(response.status===200) // if status 200 you will get a json response with kick info. 
-            {response.json().then(data => processPostResult(data))}
-            else if(response.status===204) 
-            {/**  if status 204 all is good. There is no kick to process  */}
-          })
-         .catch(err => console.error('An error occurred while posting a player event.', err));
+          {response.json().then(data => processPostResult(data));}
+          else if(response.status===204) 
+          {/**  if status 204 all is good. There is no kick to process  */}
+        })
+        .catch(err => console.error('An error occurred while posting a player event.', err));
 
 
       
-     //return fakeRequest.then(processPostResult).catch(err => console.error('An error occurred while posting a player event.', err));
+      //return fakeRequest.then(processPostResult).catch(err => console.error('An error occurred while posting a player event.', err));
     }
   }
 
@@ -170,11 +170,11 @@ const getPlayerSessionService = (configuration = {}, getPlayerState, kickPlaybac
           updateIntervalSecs = data.playerEventRequest.eventInterval || 15;
         }
 
-        viewingSession = uuid.v4()
+        viewingSession = uuid.v4();
         console.log('Player session client: Session start. Creating a GUID for this playback session. Extract data needed for event posting.',
           viewingSession, eventPostUrl, updateIntervalSecs);
       } else {
-        console.warn('Player session client: Session start without sufficient playback data for tracking events.')
+        console.warn('Player session client: Session start without sufficient playback data for tracking events.');
       }
     },
     endSession: () => {

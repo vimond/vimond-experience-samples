@@ -31,7 +31,7 @@ function generateSimpleFingerprint() {
   fingerprint += screen.pixelDepth || '';
 
   return fingerprint;
-};
+}
 
 function assembleDeviceLabel() {
   const userAgent = navigator.userAgent;

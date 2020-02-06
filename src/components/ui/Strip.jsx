@@ -52,45 +52,43 @@ export default class Strip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     };
   }
 
   onClick = e => {
     const { onClick, items } = this.props;
     const item = items.find(item => item.id === e.currentTarget.dataset.id);
-    this.setState({ asset: item,showSingle: false }); 
+    this.setState({ asset: item,showSingle: false });
     if (onClick) {
       onClick(e, item);
     }
   };
 
-
-
   render() {
-    const { className, items, title} = this.props;
-    const { asset,showSingle} = this.state;
+    const { className, items, title } = this.props;
+    const { asset, showSingle } = this.state;
     let details;
 
     return (
       <div >
-         {showSingle && <div className='single'><InlinePlay title="Single asset sample" key={asset.id} item={asset} id={asset.id}/> </div>}
+        { showSingle && <div className='single'><InlinePlay title="Single asset sample" key={asset.id} item={asset} id={asset.id}/></div> }
         <Section className={cx('strip', className)}>
-          <h2>{title}</h2>
+          <h2>{ title }</h2>
           <div className="covers">
-            {!items || items.length === 0 ? 'No items found' : undefined}
-            {items && items.map(item => ( 
-              <Container key={item.title+item.id}>
-                <Cover key={item.title} item={item}  onClick={this.onClick}/>
-                <div>{item.title}</div>
-              </Container>
-
-            ))}
+            { !items || items.length === 0 ? 'No items found' : undefined }
+            {
+              items && items.map(item => (
+                <Container key={item.title+item.id}>
+                  <Cover key={item.title} item={item}  onClick={this.onClick}/>
+                  <div>{item.title}</div>
+                </Container>
+              ))
+            }
           </div>
-          {details}
+          { details }
         </Section>
       </div>
     );
   }
-
 }

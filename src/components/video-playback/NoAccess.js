@@ -18,7 +18,7 @@ const NoAccess = ({ asset, onExit, error, kickResult }) => {
   if (error && (error.status == 401 || error.status == 403)) {   // eslint-disable-line eqeqeq
     const errorCode = error.details && error.details.errors[0] && error.details.errors[0].code;
   
-    if (errorCode === "3006") {
+    if (errorCode === '3006') {
       return (
         <Message>
           <h2>Device limit exceeded.</h2>
@@ -29,11 +29,11 @@ const NoAccess = ({ asset, onExit, error, kickResult }) => {
         </Message>
       );
     } else {
-      let uri ="/payment?categoryId=";
+      let uri ='/payment?categoryId=';
       if(asset.content){
-        uri = "/payment?categoryId=" + asset.content.category.id;
+        uri = '/payment?categoryId=' + asset.content.category.id;
       }else{
-         uri = "/payment?categoryId=" + asset.category.id;
+        uri = '/payment?categoryId=' + asset.category.id;
       }
       
       return (

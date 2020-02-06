@@ -20,11 +20,11 @@
     "jwt-decode": "^2.2.0",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.9.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-inlinesvg": "^1.1.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.1.1",
+    "react-scripts": "3.3.1",
     "recompose": "^0.30.0",
     "styled-components": "^4.3.2",
     "vimond-replay": "^1.9.9"
@@ -35,7 +35,8 @@
     "eject": "react-scripts eject",
     "build": "sh -ac '. .env.${REACT_APP_ENV}; react-scripts build'",
     "build:development": "REACT_APP_ENV=development npm run build",
-    "build:production": "REACT_APP_ENV=production npm run build"
+    "build:production": "REACT_APP_ENV=production npm run build",
+    "lint": "eslint ./ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,5 +52,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-standard": "14.1.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-standard": "4.0.1"
   }
 }

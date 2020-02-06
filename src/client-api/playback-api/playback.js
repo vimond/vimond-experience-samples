@@ -8,7 +8,7 @@ const getPlaybackService = (configuration,version) => {
       // if version is "main" use default defined as main in the platform,and skip versions parameter 
       const playbackUri = `${playApiHost}${asset.id}/play?contentType=${encodeURIComponent(streamContentType)}${version!=='main'?'&versions='+version:''}`;
       //playbackUri = playbackUri+version?`&version=${version}`:'';
-     // const playbackUri = `${playApiHost}${asset.id}/play`;
+      // const playbackUri = `${playApiHost}${asset.id}/play`;
       const fetchOptions = {
         headers: {
           'Accept': 'application/json',

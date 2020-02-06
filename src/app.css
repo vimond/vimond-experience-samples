@@ -174,7 +174,7 @@ h1, h2 {
   position:fixed;
   z-index: 12;
   display: flex;
-  
+
 }
 .profile-subprofile-header {
   margin: auto;
@@ -182,7 +182,7 @@ h1, h2 {
 .profile-login-logo {
   position: absolute;
   white-space: nowrap;
-  
+
 }
 
 .profile-menu-icon button {
@@ -290,15 +290,15 @@ h1, h2 {
   display: grid;
   grid-template-columns: 25% 75%;
   overflow-y: auto;
-  
-  
+
+
 }
 
 
 .profile-img{
   margin: auto;
   padding: 10px;
- 
+
 }
 
 
@@ -312,23 +312,23 @@ h1, h2 {
 }
 
 .profile-info {
-  
+
   margin-left: 2rem;
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
- 
+
 }
 
 .profile-content {
-  
+
   margin-left: 2rem;
   grid-column: 2 / span 1;
   grid-row: 1 / span 2;
-  
+
 }
 
 .edit-profile-form {
-  
+
   position: relative;
   margin-top: 2rem;
   padding-bottom: 1rem;
@@ -340,19 +340,19 @@ h1, h2 {
 }
 
 .edit-profile-info {
-  
+
   margin-left: 2rem;
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
- 
+
 }
 
 .edit-profile-actions {
-  
+
   margin-left: 2rem;
   grid-column: 2 / span 1;
   grid-row: 1 / span 2;
-  
+
 }
 
 .edit-action-group {
@@ -377,15 +377,15 @@ input {
   width: 20%;
   font-size: .70rem;
   font-weight: 500;
-  
+
 }
 .input-list {
   width:90%;
-  
+
 }
 
 .input-item {
-  
+
   margin-top:1rem;
 }
 
@@ -396,7 +396,7 @@ input {
 
 .input-item-active label{
   color: black;
-  border-bottom: 2px solid #F27200; 
+  border-bottom: 2px solid #F27200;
 }
 
 label {
@@ -443,7 +443,7 @@ button {
 }
 
 .tab-list {
-  
+
   padding-left: 0;
 }
 
@@ -483,13 +483,13 @@ button {
 
 
 .customlogin-content {
-  
+
   margin-left: 100px;
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
   display: list-item;
   z-index: 1;
- 
+
 }
 
 .customlogin-content .tab-content {
@@ -501,11 +501,11 @@ button {
 }
 
 .customlogin-actions {
-  
+
   margin-left: 2rem;
   grid-column: 2 / span 1;
   grid-row: 1 / span 2;
-  
+
 }
 .customlogin-content .input-group {
   margin-top: 3rem;
@@ -524,7 +524,7 @@ button {
 
 
 .customlogin-form-overlay {
-  
+
   position: absolute;
   height: 100%;
   width: 100%;
@@ -542,18 +542,18 @@ button {
 /* CSS DEFINITIONS FOR Additional sample pages */
 
 .page {
-  
+
   box-sizing: border-box;
   background-color: black;
   min-height: 100vh;
   color: white;
-  
+
 }
 
 .page-padding {
   padding: 4rem 2.5rem 2.5rem;
-  
-  
+
+
 }
 
 
@@ -569,14 +569,14 @@ button {
 .userPages {
 
   background-color:black;
-  
-  
+
+
   padding-top: 7rem;
   padding-bottom: 3rem;
   min-height: 100vh;
   box-sizing: border-box;
   position: relative;
-  
+
 }
 
 
@@ -618,7 +618,8 @@ button {
     display: -moz-flex;
     display: -webkit-flex;
     width: 100%;
-    margin-left: 1rem;
+    box-sizing: border-box;
+    margin: 0;
     text-align: center;
 }
 
@@ -645,7 +646,7 @@ button {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
-  
+
 }
 
 
@@ -683,7 +684,7 @@ button {
   max-height: 28rem;
   margin-left:1rem;
   cursor: pointer;
- 
+
 }
 
 .cover:hover {
@@ -727,7 +728,7 @@ button {
   display: block;
   top: 0;
   left: 0px;
-  
+
   background: rgba(0,0,0,.6);
   transition: all .3s ease-in;
   transition-delay: .25s;
@@ -839,7 +840,7 @@ button {
     border-top-right-radius: 27px;
     border-bottom-right-radius: 27px;
     background-image: -webkit-gradient(linear,left top,right top,from(#FFAA49),to(#F6387A));
-    background-image: linear-gradient(to right,#FFAA49,#F6387A); 
+    background-image: linear-gradient(to right,#FFAA49,#F6387A);
     padding: 0 22px 0 18px;
 
 }
@@ -868,11 +869,11 @@ margin-bottom: 3rem;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
- 
+
   color: white;
   margin-left: 17rem;
   margin-right: 17rem;
-  
+
 }
 
 .subProfileCover {
@@ -889,8 +890,8 @@ margin-bottom: 3rem;
   margin-right: 1rem;
   cursor: pointer;
   width: 6rem;
- 
- 
+
+
 }
 .subProfileInput, .loginInput {
   width: 20rem;
@@ -905,7 +906,7 @@ margin-top: 3rem;
 }
 
 .subProfileCover  img {
- 
+
   height: 4rem;
   width: 4rem;
   margin: 1rem auto;
@@ -918,7 +919,7 @@ margin-top: 3rem;
 }
 
 .subProfileCover  svg {
-  
+
   height: 4.4rem;
   width: 4.4rem;
   margin: 1rem auto;
